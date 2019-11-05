@@ -118,7 +118,7 @@ class CHaS:
 
     def do_whatweb_scan(self):
         print("[+] Starting WhatWeb scan")
-        proc = subprocess.Popen("{2}/Tools/WhatWeb/whatweb --no-errors -a 3 --colour=always {0} | {2}/Tools/aha/aha  > {1}/WhatWeb.html".format(
+        proc = subprocess.Popen("{2}/Tools/WhatWeb/whatweb --no-errors -a 3 --colour=always {0} > {1}/WhatWeb.html".format(
             self.arguments.target, self.report_location, self.tool_location), shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, close_fds=True)
         proc.communicate()
         print("[+] Finished WhatWeb scan")
