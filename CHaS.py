@@ -46,7 +46,7 @@ class CHaS:
 
     def do_sslscan(self):
         print("[+] Starting SSLScan")
-        proc = subprocess.Popen("{2}/Tools/sslscan/sslscan {0} | {2}/Tools/aha/aha > {1}/sslscan.html".format(
+        proc = subprocess.Popen("{2}/Tools/sslscan/sslscan {0} > {1}/sslscan.html".format(
             self.arguments.target, self.report_location, self.tool_location), shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, close_fds=True)
         proc.communicate()
         print("[+] Finished SSLScan")
@@ -54,7 +54,7 @@ class CHaS:
 
     def do_testssl(self):
         print("[+] Starting TestSSL (This may take a while)")
-        proc = subprocess.Popen("{2}/Tools/testssl.sh/testssl.sh {0} | {2}/Tools/aha/aha > {1}/testssl.html".format(
+        proc = subprocess.Popen("{2}/Tools/testssl.sh/testssl.sh {0} > {1}/testssl.html".format(
             self.arguments.target, self.report_location, self.tool_location), shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, close_fds=True)
         proc.communicate()
         print("[+] Finished TestSSL")
@@ -62,7 +62,7 @@ class CHaS:
 
     def do_check_headers(self):
         print("[+] Starting CheckHeaders")
-        proc = subprocess.Popen("python {2}/Tools/securityheaders/securityheaders.py --max-redirects 5 {0} | {2}/Tools/aha/aha > {1}/headers.html".format(
+        proc = subprocess.Popen("python {2}/Tools/securityheaders/securityheaders.py --max-redirects 5 {0} > {1}/headers.html".format(
             self.arguments.target, self.report_location, self.tool_location), shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, close_fds=True)
         proc.communicate()
         print("[+] Finished CheckHeaders")
@@ -94,7 +94,7 @@ class CHaS:
 
     def do_wig_scan(self):
         print("[+] Starting Wig scan")
-        proc = subprocess.Popen("python3 {2}/Tools/wig/wig.py -q {0} | {2}/Tools/aha/aha  > {1}/wig.html".format(
+        proc = subprocess.Popen("python3 {2}/Tools/wig/wig.py -q {0}  > {1}/wig.html".format(
             self.arguments.target, self.report_location, self.tool_location), shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, close_fds=True)
         proc.communicate()
         print("[+] Finished Wig scan")
@@ -109,11 +109,11 @@ class CHaS:
         return True
 
     def do_wafw00f_scan(self):
-        # print("[+] Starting wafw00f scan")
-        # proc = subprocess.Popen("{2}/Tools/wafw00f/wafw00f -cleanup -quiet -url {0} | {2}/Tools/aha/aha  > {1}/wafw00f.html".format(
-            # self.arguments.target, self.report_location, self.tool_location), shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, close_fds=True)
-        # proc.communicate()
-        print("[!] wafw00f is currently unsupported")
+        print("[+] Starting wafw00f scan")
+        proc = subprocess.Popen("{2}/Tools/wafw00f/wafw00f -cleanup -quiet -url {0}  > {1}/wafw00f.html".format(
+            self.arguments.target, self.report_location, self.tool_location), shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, close_fds=True)
+        proc.communicate()
+        # print("[!] wafw00f is currently unsupported")
         return True
 
     def do_whatweb_scan(self):
